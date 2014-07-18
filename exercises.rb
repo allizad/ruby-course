@@ -58,6 +58,19 @@ module Exercises
   #    add `str` to the end of the array
   def self.ex7(array, str)
     # TODO
+    #check if str is in array
+    if array.include?(str) == true
+    #if str is the last element, return itself
+      if array.last == str
+        array
+      else
+        array << str
+        array
+      end
+    else
+    #if str is not in the array, return false
+    false
+    end
   end
 
   # Exercise 8
@@ -65,7 +78,11 @@ module Exercises
   #    { :name => 'Bob', :occupation => 'Builder' }
   #    Iterate through `people` and print out their name and occupation.
   def self.ex8(people)
+    # value of keys name, occupation - puts in line together
     # TODO
+    people.each do |h|
+      puts "#{h[:name]}: #{h[:occupation]}"
+    end
   end
 
   # Exercise 9
@@ -73,7 +90,7 @@ module Exercises
   #    Otherwise, returns `false`
   # Hint: Google for the wikipedia article on leap years
   def self.ex9(time)
-    # TODO
+    Date.leap?(time.year)
   end
 end
 

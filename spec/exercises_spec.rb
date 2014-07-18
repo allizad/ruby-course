@@ -45,11 +45,12 @@ end
 describe 'Exercise 5' do
   #ask NICK
   it "puts each element in an array (old way)" do
-    expect STDOUT.should_receive(:puts).with('hello')
-    expect STDOUT.should_receive(:puts).with('hi')
-    expect STDOUT.should_receive(:puts).with('bye')
+    STDOUT.should_receive(:puts).with('hello')
+    STDOUT.should_receive(:puts).with('hi')
+    STDOUT.should_receive(:puts).with('bye')
     Exercises.ex5(["hello", "hi", "bye"])
   end
+  #nick says "there's no benefit to doing this as a programmer"
  it "puts each element in an array (new way)" do
     expect(STDOUT).to receive(:puts).and_return("hello")
     expect(STDOUT).to receive(:puts).and_return("hi")
@@ -77,11 +78,39 @@ end
 #    add `str` to the end of the array
 
 describe 'Exercise 7' do
-
+  it "adds 'str' to the end of the array if 'str' exsists in the array" do
+    array = [1, 2, 4]
+    array2 = [1, 2, 'str']
+    str = 'str'
+    expect(Exercises.ex7(array, str)).to eq(false)
+    expect(Exercises.ex7(array2, str)).to eq(array2)
+    array3 = [1, 'str', 3]
+    array4 = [1, 'str', 3, 'str']
+    expect(Exercises.ex7(array3, str)).to eq(array4)
+  end
 end
 
+describe 'Exercise 8' do
+  # `people` is an array of hashes. Each hash is like the following:
+  #    { :name => 'Bob', :occupation => 'Builder' }
+  it 'Iterate through `people` hash and print out their name and occupation.' do
+    people = [{name: "alli", occupation: "ships code"}, {name: "nick z.", occupation: "madd skillz"}]
+    expect(STDOUT).to receive(:puts).with("alli: ships code")
+    expect(STDOUT).to receive(:puts).with("nick z.: madd skillz")
+    Exercises.ex8(people)
+  end
+end
 
-
+describe 'Exercise 9' do
+  it 'Returns `true` if the given time is in a leap year' do
+    #    Otherwise, returns `false`
+    # Hint: Google for the wikipedia article on leap years
+    non_leap = Time.now.to_date
+    leap = Date.parse('2008-10-31')
+    expect(Exercises.ex9(non_leap)).to eq(false)
+    expect(Exercises.ex9(leap)).to eq(true)
+  end
+end
 
 
 
